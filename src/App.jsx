@@ -1,12 +1,15 @@
 // /src/App.jsx
 // import React from "react";
-import TodoList from "./TodoList"; // Import TodoList component
+// /src/App.jsx
+
+// import React from 'react';
+import AddTodoForm from "./AddTodoForm";
 
 function App() {
   return (
     <div>
-      <h1>My Todo List</h1>
-      <TodoList /> {/* Use the TodoList component here */}
+      <h1>Todo List</h1>
+      <AddTodoForm />
     </div>
   );
 }
