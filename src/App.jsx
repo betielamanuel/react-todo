@@ -1,10 +1,12 @@
-const App = () => {
+import ToDoList from "./TodoList";
+
+function App() {
   return (
     <div>
-      {/* create a level-one heading thats says "Todo List" */}
       <h1>Todo List</h1>
+      <ToDoList />
     </div>
   );
-};
+}
 
 export default App;

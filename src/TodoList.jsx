@@ -2,14 +2,13 @@
 // declare a function names TodoList
 // export TodoList function as default module
 
+const todoList = [
+  "Learn React",
+  "Clime Mt. Everest",
+  "Run a marathon",
+  "Feed the cat",
+];
 const ToDoList = () => {
-  const todoList = [
-    "Learn React",
-    "Clime Mt. Everest",
-    "Run a marathon",
-    "Feed the cat",
-  ];
-
   return (
     <ul>
       {todoList.map((todo) => (
