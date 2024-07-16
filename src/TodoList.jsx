@@ -3,10 +3,10 @@
 // export TodoList function as default module
 
 const todoList = [
-  "Learn React",
-  "Clime Mt. Everest",
-  "Run a marathon",
-  "Feed the cat",
+  { id: 1, title: "Learn React" },
+  { id: 2, title: "Clime Mt. Everest" },
+  { id: 3, title: "Run a marathon" },
+  { id: 4, title: "Feed the cat" },
 ];
 const ToDoList = () => {
   return (
