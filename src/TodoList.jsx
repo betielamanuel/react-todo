@@ -1,7 +1,11 @@
+// create a functional React component
+// declare a function names TodoList
+// export TodoList function as default module
+
 const ToDoList = () => {
   const todoList = [
     "Learn React",
-    "Climb Mt. Everest",
+    "Clime Mt. Everest",
     "Run a marathon",
     "Feed the cat",
   ];
