@@ -1,6 +1,8 @@
-function AddTodoForm() {
+import PropTypes from "prop-types";
+
+function AddTodoForm(props) {
   // create a new function called handleAddTodo
-  const handleAddTodo = () => {
+  const handleAddTodo = (event) => {
     // prevent the default behavior of the form submit
     event.preventDefault();
 
@@ -11,9 +13,13 @@ function AddTodoForm() {
     // log the value of todoTitle in the console
     console.log(todoTitle);
 
+    // invoke the onAddTodo callback prop and pass todoTitle as an argument
+    props.onAddTodo(todoTitle);
+
     // reset the form so the text input value is cleared
     event.target.reset();
   };
+
   return (
     <form onSubmit={handleAddTodo}>
       <label htmlFor="todoTitle">Title</label>
@@ -22,5 +28,10 @@ function AddTodoForm() {
     </form>
   );
 }
+
+// Prop validation for AddTodoForm
+AddTodoForm.propTypes = {
+  onAddTodo: PropTypes.func.isRequired,
+};
 
 export default AddTodoForm;
