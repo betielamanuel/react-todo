@@ -1,35 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect, Fragment } from "react";
+import TodoList from "./TodoList";
+import AddTodoForm from "./AddTodoForm";
 
-function App() {
-  const [count, setCount] = useState(0)
+// Custom Hook
+function useSemiPersistentState() {
+  const [todoList, setTodoList] = useState(() => {
+    const saved = localStorage.getItem("savedTodoList");
+    return saved ? JSON.parse(saved) : [];
+  });
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+  useEffect(() => {
+    localStorage.setItem("savedTodoList", JSON.stringify(todoList));
+  }, [todoList]);
+
+  return [todoList, setTodoList];
 }
 
-export default App
+function App() {
+  // Use the custom hook
+  const [todoList, setTodoList] = useSemiPersistentState();
+
+  const addTodo = (newTodo) => {
+    setTodoList((prevTodoList) => [...prevTodoList, newTodo]);
+  };
+
+  // Define the removeTodo handler function
+  const removeTodo = (id) => {
+    const updatedTodoList = todoList.filter((todo) => todo.id !== id);
+    setTodoList(updatedTodoList);
+  };
+
+  return (
+    <Fragment>
+      <h1>Todo List</h1>
+      <AddTodoForm onAddTodo={addTodo} />
+      <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+    </Fragment>
+  );
+}
+
+export default App;
