@@ -1,22 +1,19 @@
-import { useState } from "react"; // import useState hook
-
+import { useState } from "react";
 import ToDoList from "./TodoList";
 import AddTodoForm from "./AddTodoForm";
 
 function App() {
-  // create a new state variable named newTodo with update
-  // function named setNewTodo
-  const [newTodo, setNewTodo] = useState("");
+  const [todoList, setTodoList] = useState([]);
+
+  const addTodo = (newTodo) => {
+    setTodoList([...todoList, newTodo]);
+  };
 
   return (
     <div>
       <h1>Todo List</h1>
-      {/*  pass setNewTodo as a callback handler prop named onAddTodo to the AddTodoForm component  */}
-
-      <AddTodoForm onAddTodo={setNewTodo} />
-      {/* Add a paragraph element that displays the value of newTodo variable */}
-      <p>New Todo: {newTodo}</p>
-      <ToDoList />
+      <AddTodoForm onAddTodo={addTodo} />
+      <ToDoList todoList={todoList} />
     </div>
   );
 }
