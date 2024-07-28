@@ -1,5 +1,5 @@
 import { useState, useEffect, Fragment } from "react";
-import ToDoList from "./TodoList";
+import TodoList from "./TodoList";
 import AddTodoForm from "./AddTodoForm";
 
 // Custom Hook
@@ -24,11 +24,17 @@ function App() {
     setTodoList((prevTodoList) => [...prevTodoList, newTodo]);
   };
 
+  // Define the removeTodo handler function
+  const removeTodo = (id) => {
+    const updatedTodoList = todoList.filter((todo) => todo.id !== id);
+    setTodoList(updatedTodoList);
+  };
+
   return (
     <Fragment>
       <h1>Todo List</h1>
       <AddTodoForm onAddTodo={addTodo} />
-      <ToDoList todoList={todoList} />
+      <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
     </Fragment>
   );
 }

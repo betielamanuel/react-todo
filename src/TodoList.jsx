@@ -1,27 +1,25 @@
 import PropTypes from "prop-types";
-import TodoListItem from "./TodoListItem"; // Import TodoListItem
+import TodoListItem from "./TodoListItem";
 
-// Destructure props to directly get todoList
-const ToDoList = ({ todoList }) => {
+function TodoList({ todoList, onRemoveTodo }) {
   return (
     <ul>
-      {/* Map through the todoList and render each todo item */}
       {todoList.map((todo) => (
-        // Use the TodoListItem component and pass key and todo as props
-        <TodoListItem key={todo.id} todo={todo} />
+        <TodoListItem key={todo.id} todo={todo} onRemoveTodo={onRemoveTodo} />
       ))}
     </ul>
   );
-};
+}
 
-// Prop validation for ToDoList
-ToDoList.propTypes = {
+// Prop validation for TodoList
+TodoList.propTypes = {
   todoList: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
     })
   ).isRequired,
+  onRemoveTodo: PropTypes.func.isRequired,
 };
 
-export default ToDoList;
+export default TodoList;
